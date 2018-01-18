@@ -1,13 +1,15 @@
 <?php include 'core/init.php';
-echo $_SESSION['user_id'];
+    $user_id = $_SESSION['user_id'];
+    $user = $getFromU->userData($user_id);
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>twitter 2.0</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" />
-    <link rel="stylesheet" href="assets/css/style-complete.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"/>
+    <link rel="stylesheet" href="assets/css/style-complete.css"/>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -23,7 +25,7 @@ echo $_SESSION['user_id'];
                         </ul>
                     </div>
 
-                    <div class="name-right">
+                    <div class="nav-right">
                         <ul>
                             <li>
                                 <input type="text" placeholder="Search" class="search" />
@@ -32,14 +34,14 @@ echo $_SESSION['user_id'];
                             </li>
 
                             <li class="hover">
-                                <label class="drop-label" for="drop-wrap1"><img src="PROFILE-IMAGE"/></label>
+                                <label class="drop-label" for="drop-wrap1"><img src="<?php echo $user->profileImage;?>"/></label>
                                 <input type="checkbox" id="drop-wrap1">
                                 <div class="drop-wrap">
                                     <div class="drop-inner">
                                         <ul>
-                                            <li><a href="PROFILE-LINK">USERNAME</a></li>
+                                            <li><a href="<?php echo $user->username;?>"><?php echo ucfirst($user->username);?></a></li>
                                             <li><a href="settings/account">Settings</a></li>
-                                            <li><a href="includes/logout">Log Out</a></li>
+                                            <li><a href="includes/logout.php">Log Out</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -49,7 +51,7 @@ echo $_SESSION['user_id'];
                     </div>
                 </div>
             </div>
-        </div>
+        </div><!--header-wrapper end-->
 
         <div class="inner-wrapper">
             <div class="in-wrapper">
@@ -59,18 +61,18 @@ echo $_SESSION['user_id'];
                             <div class="info-box">
                                 <div class="info-inner">
                                     <div class="info-in-head">
-                                        <img src="PROFILE-COVER" />
+                                        <img src="<?php echo $user->profileCover;?>" />
                                     </div>
                                     <div class="info-in-body">
                                         <div class="in-b-box">
                                             <div class="in-b-img">
-                                                <img src="PROFILE-IMAGE"/>
+                                                <img src="<?php echo $user->profileImage;?>"/>
                                             </div>
                                         </div>
                                         <div class="info-body-name">
                                             <div class="in-b-name">
-                                                <div><a href="PROFILE-LINK">SCREEN-NAME</a></div>
-                                                <span><small><a href="PROFILE-LINK">@USERNAME</a></small></span>
+                                                <div><a href="<?php echo $user->username;?>"><?php echo ucwords($user->screenName);?></a></div>
+                                                <span><small><a href="<?php echo $user->username;?>">@<?php echo ucfirst($user->username);?></a></small></span>
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +91,7 @@ echo $_SESSION['user_id'];
                                                     FOLLOWING
                                                 </div>
                                                 <div class="num-body">
-                                                    <span class="count-following">10</span>
+                                                    <span class="count-following"><?php echo $user->following; ?></span>
                                                 </div>
                                             </div>
                                             <div class="num-box">
@@ -97,15 +99,15 @@ echo $_SESSION['user_id'];
                                                     FOLLOWERS
                                                 </div>
                                                 <div class="num-body">
-                                                    <span class="count-followers">10</span>
+                                                    <span class="count-followers"><?php echo $user->followers; ?></span>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!--in-left end-->
+                                        </div><!--number-wrapper end-->
+                                    </div><!--info-in footer end-->
+                                </div><!--info-inner end-->
+                            </div><!--info-box end-->
+                        </div><!--in-left-wrap end-->
+                    </div><!--in-left end-->
 
                     <div class="in-center">
                         <div class="in-center-wrap">
@@ -113,7 +115,7 @@ echo $_SESSION['user_id'];
                                 <div class="tweet-inner">
                                     <div class="tweet-h-left">
                                         <div class="tweet-h-img">
-                                            <img src="PROFILE-IMAGE" />
+                                            <img src="<?php echo $user->profileImage;?>" />
                                         </div>
                                     </div>
                                     <div class="tweet-body">
@@ -134,7 +136,7 @@ echo $_SESSION['user_id'];
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="f-to-right">
+                                        <div class="t-fo-right">
                                             <span id="count">140</span>
                                             <input type="submit" name="tweet" value="tweet" />
                                             </form>
@@ -160,9 +162,9 @@ echo $_SESSION['user_id'];
 
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </div><!--in-full end-->
+            </div><!--in-wrapper end-->
+        </div><!--inner-wrapper end-->
+    </div><!--wrapper end-->
 </body>
 </html>
