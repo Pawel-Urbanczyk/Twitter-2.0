@@ -22,7 +22,10 @@ if(isset($_POST['signup'])){
         }else{
             if($getFromU->checkEmail($email) === true){
                 $error = 'Email is already in use';
-            }else{}
+            }else{
+                $getFromU->register($email, $screenName, $password);
+                header('Location: home.php');
+            }
         }
     }
 }

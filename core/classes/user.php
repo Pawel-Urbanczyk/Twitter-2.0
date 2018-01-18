@@ -64,6 +64,18 @@ class User
             return false;
         }
     }
+
+    public function register($email, $screenName, $password)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO `users` (`email`, `password`, `screenName`, `profileImage`, `profileCover`) VALUES (:email, :password, :screenName, 'assets/images/defaultprofileimage.png', 'assets/images/defaultCoverImage.png')");
+        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+        $stmt->bindParam(":password", md5($password), PDO::PARAM_STR);
+        $stmt->bindParam(":screenName", $screenName, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $user_id = $this->pdo->lastInsertID();
+        $_SESSION['user_id'] = $user_id;
+    }
 }
 
 ?>
