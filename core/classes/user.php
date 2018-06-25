@@ -112,7 +112,7 @@ class User
         $i = 1;
         
         foreach ($fields as $name => $value) {
-          $columns .= "`{$name}` = :{$name}";
+          $columns .= "`{$name}` = :{$name} ";
           if($i < count($fields)){
               $columns .= ', ';
           }
@@ -136,7 +136,7 @@ class User
     {
         $stmt = $this->pdo->prepare("SELECT `user_id` FROM `users` WHERE `username` = :username");
         $stmt->bindParam(":username", $username, PDO::PARAM_STR);
-        $stmt->execute;
+        $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_OBJ);
         return $user->user_id;
     }
